@@ -1,11 +1,20 @@
 const mongoose=require("mongoose");
 
-// {
-//     ShortId: String required unique,
-//     RedirectUrl: String Required,
-//     Visits:[{
-//         timeStamp:Number,
-//     }]
-// }
+const urlSchema= new mongoose.Schema({
+    ShortUrl:{
+        type : String,
+        required:true,
+        unique:true
+    },
+    RedirectUrl: {
+        type: String,
+        required:true
+    },
+    VisitedHistory:[{type:Date,
+        Visits: Number
+    }]
+})
 
-//Create model of the schema and export the model
+const model=mongoose.model("Urls",urlSchema);
+
+module.exports=model;
